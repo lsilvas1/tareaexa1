@@ -1,0 +1,30 @@
+import java.io.FileWriter;
+import java.io.IOException;
+
+public class ArchivoConNombre {
+
+    public static void main(String[] args) {
+	//Creamos el nombre del archivo
+        String nombreArchivo = "luissilva.txt";
+	//contenido que guardaremos en el archivo .txt	
+        String texto = "Escriba un programa que sea capaz de crear un archivo con el texto con su [nombre sin espacios] Ejemplo:
+jennerperez.txt, el cual contenga el texto de este numeral.."; 
+        crearArchivoSinEspacios(nombreArchivo, texto);
+    }
+    public static void crearArchivoSinEspacios(String nombreArchivo, String contenido) {
+        try {
+            // creamos el archivo con FileWriter
+            FileWriter writer = new FileWriter(nombreArchivo);
+            // Escribimos el texto en el archivo .txt
+            writer.write(contenido);
+            // Cerramos writer y se guarda el archivo 
+            writer.close();
+    			//Desplegamos el mensaje en pantalla que el archivo fue creado exitosamente 
+            System.out.println("Se creo el archivo: " + nombreArchivo);
+			   //si encuentra un error o el archivo ya existe damos este mensaje de error
+         } catch (IOException e) {
+            System.out.println("No  se pudo crear el archivo .");
+            e.printStackTrace();
+        }
+    }
+}
