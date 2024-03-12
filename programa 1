@@ -1,0 +1,31 @@
+import java.io.File;
+
+public class DirectorioRecursivo {
+
+    public static void main(String[] args) {
+        //Solicitamos al usuario que ingrese el directorio que quiere explorar
+		Scanner scanner = new Scanner(System.in);
+		System.out.print("Ingrese la ruta que desea explorar por ejemplo: c:\temp ");
+        String ruta = scanner.nextLine();
+
+        //Llamada del método recursivo
+        encontrarDirectorios(ruta);
+
+        scanner.close();
+    }
+
+    public static void encontrarDirectorios(String ruta) {
+        File directorio = new File(ruta);
+        File[] archivos = directorio.listFiles();
+		//buscamos los directorios y luego los archivos
+        if (archivos != null) {
+            for (File archivo : archivos) {
+                if (archivo.isDirectory()) {
+                    System.out.println("Directorios que fueron encontrados: " + archivo.getName());
+                    // Aca vamos a buscar subdirectorios
+                    encontrarDirectorios(archivo.getAbsolutePath());
+                }
+            }
+        }
+    }
+}
